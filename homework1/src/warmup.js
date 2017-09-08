@@ -1,7 +1,7 @@
 function change(amt) {
-  if (amt < 0) {throw new RangeError()};
+  if (amt < 0) { throw new RangeError(); }
   const result = [];
-  var remaining = amt;
+  let remaining = amt;
   [25, 10, 5, 1].forEach((coin) => {
     result.push(Math.floor(remaining / coin));
     remaining %= coin;
