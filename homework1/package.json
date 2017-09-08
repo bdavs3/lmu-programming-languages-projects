@@ -1,0 +1,23 @@
+{
+  "name": "homework1",
+  "version": "0.0.1",
+  "description": "Assignment 1 for CMSI 386",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Ben Davis",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.0",
+    "should": "^13.0.1"
+  },
+  "dependencies": {}
+}
