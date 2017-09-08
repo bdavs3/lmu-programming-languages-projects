@@ -32,6 +32,20 @@ function scramble(str) {
   return result;
 }
 
+function powers(base, lim, callback) {
+  for (let currentPow = 1; currentPow <= lim; currentPow *= base) {
+    callback(currentPow);
+  }
+}
+
+function* powersGenerator(base, lim) {
+  let currentPow = 1;
+  while (currentPow <= lim) {
+    yield currentPow;
+    currentPow *= base;
+  }
+}
+
 module.exports = {
-  change, stripQuotes, scramble,
+  change, stripQuotes, scramble, powers, powersGenerator,
 };
