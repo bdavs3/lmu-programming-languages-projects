@@ -46,6 +46,16 @@ function* powersGenerator(base, lim) {
   }
 }
 
+function interleave(arr, ...args) {
+  const requiredLength = arr.length + args.length;
+  const result = [];
+  for (let i = 0; i < requiredLength; i += 1) {
+    if (arr[0] !== undefined) result.push(arr.shift());
+    if (args[0] !== undefined) result.push(args.shift());
+  }
+  return result;
+}
+
 module.exports = {
-  change, stripQuotes, scramble, powers, powersGenerator,
+  change, stripQuotes, scramble, powers, powersGenerator, interleave,
 };
