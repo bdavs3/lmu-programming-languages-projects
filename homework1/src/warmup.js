@@ -56,6 +56,38 @@ function interleave(arr, ...args) {
   return result;
 }
 
+function cylinder(obj) {
+  let r = obj.radius === undefined ? 1 : obj.radius;
+  let h = obj.height === undefined ? 1 : obj.height;
+  const pi = Math.PI;
+  const volume = function volume() {
+    return (pi * r * r * h);
+  };
+  const surfaceArea = function surfaceArea() {
+    return (2 * pi * r * h) + (2 * pi * r * r);
+  };
+  const widen = function widen(factor) {
+    r *= factor;
+  };
+  const stretch = function stretch(factor) {
+    h *= factor;
+  };
+  return Object.freeze({
+    volume,
+    surfaceArea,
+    widen,
+    stretch,
+    radius: r,
+    height: h,
+  });
+}
+
 module.exports = {
-  change, stripQuotes, scramble, powers, powersGenerator, interleave,
+  change,
+  stripQuotes,
+  scramble,
+  powers,
+  powersGenerator,
+  interleave,
+  cylinder,
 };
