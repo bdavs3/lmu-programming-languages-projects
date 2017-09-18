@@ -22,13 +22,16 @@ function stripQuotes(str) {
 function scramble(str) {
   let result = '';
   const charArr = str.split('');
+  charArr.forEach((char) => {
+    const random = Math.floor(Math.random() * str.length);
+    [charArr[str.indexOf(char)], charArr[random]] =
+    [charArr[random], charArr[str.indexOf(char)]];
+  });
   for (let i = charArr.length; i > 0; i -= 1) {
     const random = Math.floor(Math.random() * i);
     [charArr[i - 1], charArr[random]] = [charArr[random], charArr[i - 1]];
   }
-  for (let j = 0; j < charArr.length; j += 1) {
-    result += charArr[j];
-  }
+  charArr.forEach((char) => { result += char; });
   return result;
 }
 
@@ -46,40 +49,46 @@ function* powersGenerator(base, lim) {
   }
 }
 
+function say(str) {
+  if (str === undefined) { return ''; }
+  let result = `${str} `;
+  const nextWord = (next) => {
+    if (next !== undefined) {
+      result += `${next} `;
+      return nextWord;
+    }
+    return result.trim();
+  };
+  return nextWord;
+}
+
 function interleave(arr, ...args) {
-  const requiredLength = arr.length + args.length;
+  const a = arr.slice();
+  const b = args.slice();
   const result = [];
-  for (let i = 0; i < requiredLength; i += 1) {
-    if (arr[0] !== undefined) result.push(arr.shift());
-    if (args[0] !== undefined) result.push(args.shift());
+  while (a.length > 0 || b.length > 0) {
+    if (a[0] !== undefined) { result.push(a.shift()); }
+    if (b[0] !== undefined) { result.push(b.shift()); }
   }
   return result;
 }
 
-function cylinder(obj) {
-  let r = obj.radius === undefined ? 1 : obj.radius;
-  let h = obj.height === undefined ? 1 : obj.height;
-  const pi = Math.PI;
-  const volume = function volume() {
-    return (pi * r * r * h);
+function cylinder(spec) {
+  let { radius = 1, height = 1 } = spec;
+  const volume = () => Math.PI * radius * radius * height;
+  const surfaceArea = () =>
+    (2 * Math.PI * radius * height) + (2 * Math.PI * radius * radius);
+  const widen = (factor) => { radius *= factor; };
+  const stretch = (factor) => { height *= factor; };
+
+  const result = {
+    volume, surfaceArea, widen, stretch,
   };
-  const surfaceArea = function surfaceArea() {
-    return (2 * pi * r * h) + (2 * pi * r * r);
-  };
-  const widen = function widen(factor) {
-    r *= factor;
-  };
-  const stretch = function stretch(factor) {
-    h *= factor;
-  };
-  return Object.freeze({
-    volume,
-    surfaceArea,
-    widen,
-    stretch,
-    radius: r,
-    height: h,
-  });
+
+  Object.defineProperty(result, 'radius', { get: () => radius });
+  Object.defineProperty(result, 'height', { get: () => height });
+
+  return Object.freeze(result);
 }
 
 module.exports = {
@@ -88,6 +97,7 @@ module.exports = {
   scramble,
   powers,
   powersGenerator,
+  say,
   interleave,
   cylinder,
 };
