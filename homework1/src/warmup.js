@@ -91,6 +91,23 @@ function cylinder(spec) {
   return Object.freeze(result);
 }
 
+function makeCryptoFunctions(key, alg) {
+  const crypto = require('crypto');
+  const encrypt = (str) => {
+    const cipher = crypto.createCipher(alg, key);
+    let crypted = cipher.update(str, 'utf8', 'hex');
+    crypted += cipher.final('hex');
+    return crypted;
+  };
+  const decrypt = (str) => {
+    const decipher = crypto.createDecipher(alg, key);
+    let decrypted = decipher.update(str, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+  };
+  return [encrypt, decrypt];
+}
+
 module.exports = {
   change,
   stripQuotes,
@@ -100,4 +117,5 @@ module.exports = {
   say,
   interleave,
   cylinder,
+  makeCryptoFunctions,
 };
