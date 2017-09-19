@@ -109,24 +109,21 @@ function makeCryptoFunctions(key, alg) {
   return [encrypt, decrypt];
 }
 
-const { XMLHttpRequest: XHR } = require('xmlhttprequest');
+const rp = require('request-promise');
 
 function randomName(spec) {
-  const { gender, region } = spec;
-  return new Promise((resolve, reject) => {
-    const xhr = new XHR();
-    if (gender === 'male' || gender === 'female') {
-      xhr.open('GET', `http://uinames.com/api/?region=${region}`, false);
-      xhr.send();
-      resolve(`${xhr.responseText.surname}, ${xhr.responseText.name}`);
-    } else {
-      xhr.open('GET', `http://uinames.com/api/?gender=${gender}`, false);
-      xhr.send();
-      reject(new Error(xhr.status));
-    }
-  });
+  const options = {
+    uri: 'http://uinames.com/api/',
+    qs: {
+      amount: 1,
+      gender: spec.gender,
+      region: spec.region,
+    },
+    json: true,
+  };
+  return rp(options).then(response => `${response.surname}, ${response.name}`)
+    .catch(err => err.status);
 }
-
 
 module.exports = {
   change,
