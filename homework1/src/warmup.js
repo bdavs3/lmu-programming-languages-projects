@@ -91,8 +91,9 @@ function cylinder(spec) {
   return Object.freeze(result);
 }
 
+const crypto = require('crypto');
+
 function makeCryptoFunctions(key, alg) {
-  const crypto = require('crypto');
   const encrypt = (str) => {
     const cipher = crypto.createCipher(alg, key);
     let crypted = cipher.update(str, 'utf8', 'hex');
@@ -108,6 +109,25 @@ function makeCryptoFunctions(key, alg) {
   return [encrypt, decrypt];
 }
 
+const { XMLHttpRequest: XHR } = require('xmlhttprequest');
+
+function randomName(spec) {
+  const { gender, region } = spec;
+  return new Promise((resolve, reject) => {
+    const xhr = new XHR();
+    if (gender === 'male' || gender === 'female') {
+      xhr.open('GET', `http://uinames.com/api/?region=${region}`, false);
+      xhr.send();
+      resolve(`${xhr.responseText.surname}, ${xhr.responseText.name}`);
+    } else {
+      xhr.open('GET', `http://uinames.com/api/?gender=${gender}`, false);
+      xhr.send();
+      reject(new Error(xhr.status));
+    }
+  });
+}
+
+
 module.exports = {
   change,
   stripQuotes,
@@ -118,4 +138,5 @@ module.exports = {
   interleave,
   cylinder,
   makeCryptoFunctions,
+  randomName,
 };
