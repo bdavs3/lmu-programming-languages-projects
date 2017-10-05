@@ -3,4 +3,6 @@ homework1/node_modules/
 homework2/env
 homework2/.cache
 homework2/__pycache__
+homework2/tests/__pycache__
 homework2/*.pyc
+standard.rc
