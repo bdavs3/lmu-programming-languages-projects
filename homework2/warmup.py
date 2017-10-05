@@ -28,7 +28,7 @@ def powers(base, limit):
         current *= base
 
 def triples():
-    return (3, 4, 5)
+    return (5, 12, 13)
 
 def say(string1=None):
 
