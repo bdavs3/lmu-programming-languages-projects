@@ -1,6 +1,8 @@
 # pragma pylint: disable=E0001
 # pragma pylint: disable=C0111
+
 from random import shuffle
+import math
 
 def change(amount):
     "non-empty docstring"
@@ -54,8 +56,24 @@ def interleave():
     "non-empty docstring"
     return 1
 
-class Cylinder:
-    "non-empty docstring"
+class Cylinder(object):
+    def __init__(self, radius=1, height=1):
+        self.radius = radius
+        self.height = height
+
+    @property
+    def surface_area(self):
+        return 2 * math.pi * (self.radius * self.radius + self.radius * self.height)
+
+    @property
+    def volume(self):
+        return self.radius * self.radius * math.pi * self.height
+
+    def widen(self, factor):
+        self.radius *= factor
+
+    def stretch(self, factor):
+        self.height *= factor
 
 def make_crypto_functions():
     "non-empty docstring"
