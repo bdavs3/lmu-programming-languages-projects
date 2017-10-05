@@ -31,7 +31,7 @@ def powers(base, limit):
 
 def triples():
     "non-empty docstring"
-    return 1
+    return (3,4,5)
 
 def say(string1=None):
     "non-empty docstring"
