@@ -1,19 +1,26 @@
-def change():
+# pragma pylint: disable=E0001
 
-def strip_quotes(str):
+def change(amount):
 
-def scramble(array):
+def strip_quotes(string):
+    return string.strip('\'\"')
 
-def say():
+def scramble(string):
+
+def powers(base, limit):
+    current = base;
+    while current <= limit:
+        yield current
+        current *= base
 
 def triples():
 
-def powers(base, limit):
+def say(string):
 
 def interleave():
 
-def cylinder():
+class Cylinder:
 
-def crypto():
+def make_crypto_function():
 
 def random_name():
