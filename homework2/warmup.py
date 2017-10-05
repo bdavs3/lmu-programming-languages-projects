@@ -5,7 +5,6 @@ from random import shuffle
 import math
 
 def change(amount):
-    "non-empty docstring"
     if amount < 0:
         raise ValueError('amount cannot be negative')
     quarters = amount // 25
@@ -15,28 +14,23 @@ def change(amount):
     return (quarters, dimes, nickels, pennies)
 
 def strip_quotes(string):
-    "non-empty docstring"
     return string.replace('\'', '').replace('"', '')
 
 def scramble(string):
-    "non-empty docstring"
     result = list(string)
     shuffle(result)
     return ''.join(result)
 
 def powers(base, limit):
-    "non-empty docstring"
     current = 1
     while current <= limit:
         yield current
         current *= base
 
 def triples():
-    "non-empty docstring"
-    return (3,4,5)
+    return (3, 4, 5)
 
 def say(string1=None):
-    "non-empty docstring"
 
     if string1 is None:
         return ''
@@ -53,7 +47,6 @@ def say(string1=None):
     return _inner_say
 
 def interleave():
-    "non-empty docstring"
     return 1
 
 class Cylinder(object):
@@ -76,9 +69,7 @@ class Cylinder(object):
         self.height *= factor
 
 def make_crypto_functions():
-    "non-empty docstring"
     return 1
 
 def random_name():
-    "non-empty docstring"
     return 1
