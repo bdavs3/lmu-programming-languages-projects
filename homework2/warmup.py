@@ -28,7 +28,6 @@ def powers(base, limit):
         yield current
         current *= base
 
-<<<<<<< HEAD
 def triples(largest_hypotenuse):
     result = []
     pairs = list(product(range(1, largest_hypotenuse), repeat=2))
@@ -39,12 +38,7 @@ def triples(largest_hypotenuse):
         c = math.sqrt(a * a + b * b)
         if c % 1 == 0 and c <= largest_hypotenuse:
             result += [(a if a < b else b, b if b > a else a, int(c))]
-
     return result
-=======
-def triples():
-    return (5, 12, 13)
->>>>>>> 787c2de21488698715e6b477e9055f426a4d1ab8
 
 def say(string1=None):
 
