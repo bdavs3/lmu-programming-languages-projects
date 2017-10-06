@@ -1,8 +1,7 @@
 import math
 import pytest
-from warmup import (change, scramble)
-                    # change, strip_quotes, scramble, say, triples, powers,
-                    # interleave, Cylinder, make_crypto_functions, random_name
+from warmup import (change, strip_quotes, scramble, say, triples, powers,
+                    interleave, Cylinder, make_crypto_functions, random_name)
 
 
 def test_change():
