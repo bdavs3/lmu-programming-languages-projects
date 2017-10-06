@@ -6,7 +6,6 @@ import math
 from itertools import product
 
 def change(amount):
-    "non-empty docstring"
     if amount < 0:
         raise ValueError('amount cannot be negative')
     quarters = amount // 25
@@ -16,22 +15,20 @@ def change(amount):
     return (quarters, dimes, nickels, pennies)
 
 def strip_quotes(string):
-    "non-empty docstring"
     return string.replace('\'', '').replace('"', '')
 
 def scramble(string):
-    "non-empty docstring"
     result = list(string)
     shuffle(result)
     return ''.join(result)
 
 def powers(base, limit):
-    "non-empty docstring"
     current = 1
     while current <= limit:
         yield current
         current *= base
 
+<<<<<<< HEAD
 def triples(largest_hypotenuse):
     result = []
     pairs = list(product(range(1, largest_hypotenuse), repeat=2))
@@ -44,9 +41,12 @@ def triples(largest_hypotenuse):
             result += [(a if a < b else b, b if b > a else a, int(c))]
 
     return result
+=======
+def triples():
+    return (5, 12, 13)
+>>>>>>> 787c2de21488698715e6b477e9055f426a4d1ab8
 
 def say(string1=None):
-    "non-empty docstring"
 
     if string1 is None:
         return ''
@@ -63,7 +63,6 @@ def say(string1=None):
     return _inner_say
 
 def interleave():
-    "non-empty docstring"
     return 1
 
 class Cylinder(object):
@@ -86,9 +85,7 @@ class Cylinder(object):
         self.height *= factor
 
 def make_crypto_functions():
-    "non-empty docstring"
     return 1
 
 def random_name():
-    "non-empty docstring"
     return 1
