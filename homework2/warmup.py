@@ -1,5 +1,6 @@
 # pragma pylint: disable=E0001
 # pragma pylint: disable=C0111
+# pragma pylint: disable=C0103
 
 from random import shuffle
 import math
@@ -9,11 +10,11 @@ import requests
 def change(amount):
     if amount < 0:
         raise ValueError('amount cannot be negative')
-    quarters = amount // 25
-    dimes = (amount - quarters * 25) // 10
-    nickels = (amount - quarters * 25 - dimes * 10) // 5
-    pennies = (amount - quarters * 25 - dimes * 10 - nickels * 5)
-    return (quarters, dimes, nickels, pennies)
+    result = []
+    for c in (25, 10, 5, 1):
+        result += [amount // c]
+        amount %= c
+    return tuple(result)
 
 def strip_quotes(string):
     return string.replace('\'', '').replace('"', '')
