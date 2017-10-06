@@ -3,6 +3,7 @@
 
 from random import shuffle
 from itertools import product
+from Crypto.Cipher import AES
 import math
 import requests
 
@@ -78,8 +79,16 @@ class Cylinder(object):
     def stretch(self, factor):
         self.height *= factor
 
-def make_crypto_functions():
-    return 1
+def make_crypto_functions(key, initialization_vector):
+    def create_cipher():
+        return AES.new(key.encode(), AES.MODE_CBC, initialization_vector.encode())
+
+    def byte_encrypt(byte_string):
+        return create_cipher().encrypt(byte_string)
+    def byte_decrypt(byte_string):
+        return create_cipher().decrypt(byte_string)
+
+    return (byte_encrypt, byte_decrypt)
 
 def random_name(**kwargs):
     # options = {
