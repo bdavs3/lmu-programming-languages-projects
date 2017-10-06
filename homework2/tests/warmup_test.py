@@ -1,6 +1,6 @@
 import math
 import pytest
-from warmup import (change, scramble)
+from warmup import (change, scramble, triples, interleave)
                     # change, strip_quotes, scramble, say, triples, powers,
                     # interleave, Cylinder, make_crypto_functions, random_name
 
@@ -37,13 +37,13 @@ def test_scramble():
 #     assert say('hi')('there')() == 'hi there'
 #     assert say('hello')('my')('name')('is')('Colette')() == 'hello my name is Colette'
 #
-# def test_triples():
-#     assert triples(0) == []
-#     assert triples(5) == [(3, 4, 5)]
-#     assert triples(40) == [(3, 4, 5), (5, 12, 13), (6, 8, 10), (7, 24, 25), (8, 15, 17),
-#                            (9, 12, 15), (10, 24, 26), (12, 16, 20), (12, 35, 37),
-#                            (15, 20, 25), (15, 36, 39), (16, 30, 34), (18, 24, 30),
-#                            (20, 21, 29), (21, 28, 35), (24, 32, 40)]
+def test_triples():
+    assert triples(0) == []
+    assert triples(5) == [(3, 4, 5)]
+    assert triples(40) == [(3, 4, 5), (5, 12, 13), (6, 8, 10), (7, 24, 25), (8, 15, 17),
+                           (9, 12, 15), (10, 24, 26), (12, 16, 20), (12, 35, 37),
+                           (15, 20, 25), (15, 36, 39), (16, 30, 34), (18, 24, 30),
+                           (20, 21, 29), (21, 28, 35), (24, 32, 40)]
 #
 # def test_powers():
 #     p = powers(2, 10)
@@ -59,13 +59,13 @@ def test_scramble():
 #     assert list(powers(2, 63)) == [1, 2, 4, 8, 16, 32]
 #     assert list(powers(2, 64)) == [1, 2, 4, 8, 16, 32, 64]
 #
-# def test_interleave():
-#     assert interleave([]) == []
-#     assert interleave([1, 4, 6]) == [1, 4, 6]
-#     assert interleave([], 2, 3) == [2, 3]
-#     assert interleave([1], 9) == [1, 9]
-#     assert interleave([8, 8, 3, 9], 1) == [8, 1, 8, 3, 9]
-#     assert interleave([2], 7, '8', {}) == [2, 7, '8', {}]
+def test_interleave():
+    assert interleave([]) == []
+    assert interleave([1, 4, 6]) == [1, 4, 6]
+    assert interleave([], 2, 3) == [2, 3]
+    assert interleave([1], 9) == [1, 9]
+    assert interleave([8, 8, 3, 9], 1) == [8, 1, 8, 3, 9]
+    assert interleave([2], 7, '8', {}) == [2, 7, '8', {}]
 #
 # def test_cylinder():
 #     c = Cylinder(radius=10, height=5)
