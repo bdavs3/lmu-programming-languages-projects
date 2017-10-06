@@ -3,6 +3,7 @@
 
 from random import shuffle
 import math
+import requests
 
 def change(amount):
     if amount < 0:
@@ -71,5 +72,16 @@ class Cylinder(object):
 def make_crypto_functions():
     return 1
 
-def random_name():
-    return 1
+def random_name(**kwargs):
+    # options = {
+    # uri: 'http://uinames.com/api/',
+    # qs: {
+    #     amount: 1,
+    #     gender: kwargs.gender,
+    #     region: kwargs.region,
+    #     },
+    #     json: true,
+    # };
+    # return rp(options).then(response => '({},{})'.format(response.surname, response.name))
+    # .catch(err => err.status);
+    request = requests.options('http://uinames.com/api/')
