@@ -4,6 +4,7 @@
 from random import shuffle
 import math
 import requests
+from itertools import product
 
 def change(amount):
     if amount < 0:
@@ -28,8 +29,17 @@ def powers(base, limit):
         yield current
         current *= base
 
-def triples():
-    return (5, 12, 13)
+def triples(largest_hypotenuse):
+    result = []
+    pairs = list(product(range(1, largest_hypotenuse), repeat=2))
+    for i, j in pairs:
+        if (j, i) in pairs:
+            pairs.remove((j, i))
+    for a, b in pairs:
+        c = math.sqrt(a * a + b * b)
+        if c % 1 == 0 and c <= largest_hypotenuse:
+            result += [(a if a < b else b, b if b > a else a, int(c))]
+    return result
 
 def say(string1=None):
 
