@@ -84,7 +84,7 @@ def make_crypto_functions():
 
 def random_name(gender, region):
     response = requests.get('http://uinames.com/api', \
-        params={'amount': '1', 'gender': gender, 'region': region})
+        params={'gender': gender, 'region': region, 'amount': '1'})
     if response.status_code == 400:
         raise ValueError(response.text)
     person = response.json()
