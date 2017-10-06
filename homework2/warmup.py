@@ -59,8 +59,8 @@ def say(string1=None):
     _inner_say.string1 = string1  # save value
     return _inner_say
 
-def interleave():
-    return 1
+def interleave(a, *b):
+    return [a[0]] + interleave(list(b), *a[1:]) if a else list(b)
 
 class Cylinder(object):
     def __init__(self, radius=1, height=1):
