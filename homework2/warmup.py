@@ -2,8 +2,8 @@
 # pragma pylint: disable=C0111
 
 from random import shuffle
-from itertools import product
 import math
+from itertools import product
 import requests
 
 def change(amount):
@@ -42,6 +42,7 @@ def triples(largest_hypotenuse):
     return result
 
 def say(string1=None):
+
     if string1 is None:
         return ''
     def _inner_say(string2=None):
@@ -56,8 +57,8 @@ def say(string1=None):
     _inner_say.string1 = string1  # save value
     return _inner_say
 
-def interleave(a, *b):
-    return [a[0]] + interleave(list(b), *a[1:]) if a else list(b)
+def interleave():
+    return 1
 
 class Cylinder(object):
     def __init__(self, radius=1, height=1):
@@ -81,16 +82,10 @@ class Cylinder(object):
 def make_crypto_functions():
     return 1
 
-def random_name(**kwargs):
-    # options = {
-    # uri: 'http://uinames.com/api/',
-    # qs: {
-    #     amount: 1,
-    #     gender: kwargs.gender,
-    #     region: kwargs.region,
-    #     },
-    #     json: true,
-    # };
-    # return rp(options).then(response => '({},{})'.format(response.surname, response.name))
-    # .catch(err => err.status);
-    request = requests.options('http://uinames.com/api/')
+def random_name(gender, region):
+    response = requests.get('http://uinames.com/api', \
+        params={'amount': '1', 'gender': gender, 'region': region})
+    if response.status_code == 400:
+        raise ValueError(response.text)
+    person = response.json()
+    return '{}, {}'.format(person['surname'], person['name'])
