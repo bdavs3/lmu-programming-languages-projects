@@ -2,9 +2,9 @@
 # pragma pylint: disable=C0111
 
 from random import shuffle
+from itertools import product
 import math
 import requests
-from itertools import product
 
 def change(amount):
     if amount < 0:
@@ -57,7 +57,7 @@ def say(string1=None):
     return _inner_say
 
 def interleave(a, *b):
-    return [a[0]] + interleave(list(b), *a[1:]) if len(a) > 0 else list(b)
+    return [a[0]] + interleave(list(b), *a[1:]) if a else list(b)
 
 class Cylinder(object):
     def __init__(self, radius=1, height=1):
