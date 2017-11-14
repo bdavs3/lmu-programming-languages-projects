@@ -16,7 +16,7 @@ Following this declaration, we wrote the following:
 int main() {
   cout << &A[0][0] << "\n";
   cout << &A[3][7];
-}
+  ...
 ```
 This produced the following console output:
 ```cpp
