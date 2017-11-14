@@ -50,6 +50,10 @@ double (*f(double (*)(double, double[]), double)) (double, ...);
 ```
 Describe rigorously, in English, the type of f.
 
+```cpp
+f is a function that passes in a pointer to a function that passes in a double and a double array and returns a double and a double and returns a pointer to a function that passes in a double and a rest parameter and returns a double.
+```
+
 # Problem 4
 (5 pts) What happens when we “redefine” a field in a C++ subclass? For example, suppose we have:
 ```cpp
