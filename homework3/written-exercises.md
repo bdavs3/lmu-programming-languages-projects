@@ -10,6 +10,8 @@ struct {
 ```
 On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be.
 
+<mark>Answer: </mark>
+
 # Problem 2
 (5 pts) Explain the meaning of the following C++ declarations:
 ```cpp
