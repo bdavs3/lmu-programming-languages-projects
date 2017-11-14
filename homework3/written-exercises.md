@@ -11,7 +11,28 @@ struct {
 On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be.
 
 ### Answer:
-Example answer
+Following this declaration, we wrote the following:
+```cpp
+int main() {
+  cout << &A[0][0] << "\n";
+  cout << &A[3][7];
+}
+```
+This produced the following console output:
+```cpp
+0x564b98a871a0
+0x564b98a872c8
+```
+These hex values are 94882683711904 and 94882683712200 in decimal, respectively.  Notice that they are only 296 apart from each other.  We had a hunch that there were 37 structs in memory between the first memory value (&A[0][0]) and the second (&A[3][7]), so we divided 296 by 37 to obtain 8.  This makes sense, if each struct was allocated 8 bytes in memory!  Conveniently, doing the following in the main method:
+```cpp
+  ...
+  cout << sizeOf(A[0][0])
+}
+```
+produces:
+```cpp
+8
+```
 
 # Problem 2
 (5 pts) Explain the meaning of the following C++ declarations:
