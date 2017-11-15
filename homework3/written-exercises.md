@@ -49,7 +49,7 @@ double (*d())[n];
 double *a[n];
 ```
 
-a is an array of size n of double pointers.
+a is an array of size n of pointers to doubles.
 
 ```cpp
 double (*b)[n];
@@ -78,14 +78,12 @@ Describe rigorously, in English, the type of f.
 
 ### Answer:
 
-```cpp
-  f is a function that passes in 
-    a pointer to a function that passes in a double and a double array of undefined size and returns a double 
+f is a function that passes in 
+  a pointer to a function that passes in a double and a double array of undefined size and returns a double 
     and a double 
-  and returns 
+  and returns
 a pointer to a function that passes in a double and a rest parameter 
 and returns a double.
-```
 
 # Problem 4
 (5 pts) What happens when we “redefine” a field in a C++ subclass? For example, suppose we have:
