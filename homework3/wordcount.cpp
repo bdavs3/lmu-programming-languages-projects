@@ -33,18 +33,18 @@ int main() {
             currentWord += c;
         }
     }
-
+    
     typedef function<bool(pair<string, int>, pair<string, int>)> Comparator;
 
 	Comparator comparisonFunction =
 			[](pair<string, int> elem1, pair<string, int> elem2) {
-				return elem1.second >= elem2.second;
+				return elem1.second <= elem2.second;
 			};
 
 	set<pair<string, int>, Comparator> setOfWords(
 			words.begin(), words.end(), comparisonFunction);
 
-    for (auto it = begin(words); it != end(words); ++it) {
+    for (auto it = begin(setOfWords); it != end(setOfWords); ++it) {
         cout << it->first << " " << it->second << " \n";
     }
 }
