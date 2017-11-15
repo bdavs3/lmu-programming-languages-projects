@@ -143,5 +143,14 @@ int main() {
 ```
 Verify that the answer you obtained is the same that would be inferred from apply the rules of static scoping. If C++ used dynamic scoping, what would the output have been?
 
+### Answer:
+The program outputs:
+```cpp
+2
+5
+2
+```
+This makes sense in the context of static scoping... '2' gets printed first because when function 'g' gets called, it calls 'f', which can only see the global 'x = 2'.  After calling 'f', however, 'g' prints the value of the 'x' that was declared inside 'g'.  This 'x' is visible to 'g' because it was declared inside of it.  And finally, the last output is obviously '2' because there is no function involved, so the global 'x' is the only thing to be seen.
+
 # Problem 6
 (5 pts) Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array, and (b) a std::array.
