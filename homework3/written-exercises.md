@@ -49,25 +49,25 @@ double (*d())[n];
 double *a[n];
 ```
 
-a is an array of size n of pointers to doubles.
+a is a size n array of pointers to doubles.
 
 ```cpp
 double (*b)[n];
 ```
 
-b is a pointer to an array of size n of doubles.
+b is a pointer to a size n array of doubles.
 
 ```cpp
 double (*c[n])();
 ```
 
-c is an array of size n of pointers to functions that return doubles.
+c is a size n array of pointers to functions that return doubles.
 
 ```cpp
 double (*d())[n];
 ```
 
-d is a pointer to a function that returns an array of doubles.
+d is a function that returns a pointer to a size n array of doubles.
 
 # Problem 3
 (5 pts) Consider the following declaration in C++:
