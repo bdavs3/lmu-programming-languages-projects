@@ -162,3 +162,9 @@ If C++ used dynamic scoping, it would have output...
 
 # Problem 6
 (5 pts) Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array, and (b) a std::array.
+
+### Answer:
+
+a) void scramble(int* a)
+
+b) void scramble(&array a)
