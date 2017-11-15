@@ -3,6 +3,8 @@
 #include <map>
 #include <algorithm>
 #include <list>
+#include <functional>
+#include <set>
 
 using namespace std;
 
@@ -23,7 +25,7 @@ int main() {
                 if (words.count(currentWord) == 0) {
                     words.insert(pair<string,int>(currentWord, 1));
                 } else {
-                    words[currentWord] += 1;
+                    ++words[currentWord];
                 }
                 currentWord = "";
             }
@@ -32,7 +34,17 @@ int main() {
         }
     }
 
-    for (auto it = words.cbegin(); it != words.cend(); ++it) {
-        cout << (*it).first << " " << (*it).second << " \n";
+    typedef function<bool(pair<string, int>, pair<string, int>)> Comparator;
+
+	Comparator comparisonFunction =
+			[](pair<string, int> elem1, pair<string, int> elem2) {
+				return elem1.second >= elem2.second;
+			};
+
+	set<pair<string, int>, Comparator> setOfWords(
+			words.begin(), words.end(), comparisonFunction);
+
+    for (auto it = begin(words); it != end(words); ++it) {
+        cout << it->first << " " << it->second << " \n";
     }
 }
