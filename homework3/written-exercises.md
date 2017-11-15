@@ -43,12 +43,40 @@ double (*c[n])();
 double (*d())[n];
 ```
 
+### Answer:
+
+```cpp
+double *a[n];
+```
+
+a is an array of size n of double pointers.
+
+```cpp
+double (*b)[n];
+```
+
+b is a pointer to an array of size n of doubles.
+
+```cpp
+double (*c[n])();
+```
+
+c is an array of size n of pointers to functions that return doubles.
+
+```cpp
+double (*d())[n];
+```
+
+d is a pointer to a function that returns an array of doubles.
+
 # Problem 3
 (5 pts) Consider the following declaration in C++:
 ```cpp
 double (*f(double (*)(double, double[]), double)) (double, ...);
 ```
 Describe rigorously, in English, the type of f.
+
+### Answer:
 
 ```cpp
   f is a function that passes in 
