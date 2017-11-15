@@ -2,10 +2,12 @@
 #include <string>
 #include <map>
 #include <algorithm>
+#include <list>
 
 using namespace std;
 
 string fullText = "";
+char wordEndings[] = {' ', '.', ',', '?', ';', '!', '\'', '"'};
 string currentWord = "";
 map<string, int> words = { };
 
@@ -14,15 +16,17 @@ int main() {
         fullText += line + " ";
     }
     for(char& c : fullText) {
-        if (c == ' ') {
-            transform(currentWord.begin(), currentWord.end(), currentWord.begin(), ::tolower);
+        if (find(begin(wordEndings), end(wordEndings), c) != end(wordEndings)) {
+            if (currentWord != "") {
+                transform(currentWord.begin(), currentWord.end(), currentWord.begin(), ::tolower);
 
-            if (words.count(currentWord) == 0) {
-                words.insert(pair<string,int>(currentWord, 1));
-            } else {
-                words[currentWord] += 1;
+                if (words.count(currentWord) == 0) {
+                    words.insert(pair<string,int>(currentWord, 1));
+                } else {
+                    words[currentWord] += 1;
+                }
+                currentWord = "";
             }
-            currentWord = "";
         } else {
             currentWord += c;
         }
