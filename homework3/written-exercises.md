@@ -104,6 +104,31 @@ public:
 ```
 Does the representation of a Derived object contain one b field or two? If two, are both accessible, or only one? Under what circumstances? Tell the story of how things are.
 
+### Answer:
+
+The only b field that is accessible for reading and writing is the int b from the Derived subclass. When you try to assign a string to b of a Derived object, like so...
+
+```cpp
+int main() {
+	Derived* d = new Derived();
+	d->a = 5;
+	d->b = "hi";
+	d->b = 7;
+	d->c = 7.7;
+}
+```
+
+it prints the following error...
+
+```cpp
+jdoodle.cpp: In function 'int main()':
+jdoodle.cpp:22:9: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  (*d).b = "hi";
+         ^
+```
+
+This makes sense with our hypothesis because the error says the program is trying to assign a 'const char*' (which we found out is the first element of an array of chars which is a string) to the int b.
+
 # Problem 5
 (5 pts) What does the following C++ program output?
 ```cpp
