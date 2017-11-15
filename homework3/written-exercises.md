@@ -167,4 +167,4 @@ If C++ used dynamic scoping, it would have output...
 
 a) void scramble(int* a)
 
-b) void scramble(&array a)
+b) void scramble(array& a)
