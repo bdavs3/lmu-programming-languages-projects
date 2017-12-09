@@ -1,18 +1,9 @@
-import Html exposing (body, h1, p, text, input, span)
-import Html.Attributes exposing (style, class, id, type_)
+import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import String exposing (toInt)
 import Date exposing (..)
-
-
-{-| This snippet uses the <ul> and <li> tags to create an unordered
-list of French grocery items. Notice that all occurrences of 'ul'
-and 'li' are followed by two lists. The first list is for any HTML
-attributes, and the second list is all the HTML nodes inside the
-tag.
-
-Et maintenant le voyage au supermarché!
--}
+import Warmup exposing (daysBetween)
 
 main =
   Html.beginnerProgram
@@ -25,8 +16,8 @@ main =
 -- Model
 
 type alias Model =
-  { firstDate : Date
-  , secondDate : Date
+  { firstDate : String
+  , secondDate : String
   }
 
 model : Model
@@ -52,7 +43,8 @@ update msg model =
 
 -- View
 
-view =
+view : Model -> Html Msg
+view model =
   body [bodyStyle] [
     h1 [headerStyle] [
     text "Date Calculator"]
@@ -71,10 +63,7 @@ view =
 viewValidation : Model -> Html.Html msg
 viewValidation model =
   let
-    millisecondsPerDay = 24 * 60 * 60 * 1000
-    from = model.firstDate
-    to = model.secondDate
-    days = (to - from) / millisecondsPerDay
+    days = daysBetween model.firstDate model.secondDate
   in
     p []
       [ text "is "
@@ -110,6 +99,3 @@ outputStyle =
   style
     [ ("font-size", "28px")
     ]
-
-
--- Thanks to "Flight of the Conchords" for creating "Foux Du Fafa"

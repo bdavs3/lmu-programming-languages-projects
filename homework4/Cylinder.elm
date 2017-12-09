@@ -17,10 +17,10 @@ surfaceArea : Cylinder -> Float
 surfaceArea c =
     2 * pi * c.radius * c.height + 2 * pi * c.radius^2
 
-widen : Cylinder -> Float -> Cylinder
-widen c factor =
+widen : Float -> Cylinder -> Cylinder
+widen factor c =
     { c | radius = c.radius * factor }
 
-stretch : Cylinder -> Float -> Cylinder
-stretch c factor =
+stretch : Float -> Cylinder -> Cylinder
+stretch factor c =
     { c | height = c.height * factor }

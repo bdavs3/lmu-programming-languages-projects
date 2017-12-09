@@ -4,6 +4,9 @@ import Date.Extra.Create exposing ( dateFromFields, getTimezoneOffset )
 import Date.Extra.Duration exposing ( diffDays )
 import Date.Extra.Period as Period exposing ( add )
 import Date exposing ( fromString, fromTime )
+import String exposing (..)
+import List exposing (..)
+import Result exposing (..)
 
 change : Int -> (Int, Int, Int, Int)
 change amount =
@@ -14,19 +17,16 @@ change amount =
     in
         if amount >= 25 then
             addTuple (change (amount - 25)) (1, 0, 0, 0)
-
         else if amount >= 10 then
             addTuple (change (amount - 10)) (0, 1, 0, 0)
-
         else if amount >= 5 then
             addTuple (change (amount - 5)) (0, 0, 1, 0)
-
         else if amount >= 1 then
             addTuple (change (amount - 1)) (0, 0, 0, 1)
         else if amount == 0 then
             (0, 0, 0, 0)
         else
-            Debug.crash "negative coin input"
+            Debug.crash "amount cannot be negative"
 
 
 stripQuotes : String -> String
@@ -44,10 +44,13 @@ stripQuotes string =
 
 powers : Int -> Int -> List Int
 powers base limit =
-    if limit < 0 then
-        []
+    if base < 0 then
+        Debug.crash "negative base"
     else
-        base^limit :: powers base (limit - 1)
+        if limit < 0 then
+            []
+        else
+            base^limit :: powers base (limit - 1)
 
 sumOfCubesOfOdds : List Int -> Int
 sumOfCubesOfOdds numbers =
