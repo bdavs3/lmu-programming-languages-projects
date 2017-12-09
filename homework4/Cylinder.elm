@@ -4,7 +4,7 @@ type alias Cylinder =
     ,    height : Float
     }
 
-cylinder =
+new =
     Cylinder 1.0 1.0
 
 volume : Cylinder -> Float
