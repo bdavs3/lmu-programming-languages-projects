@@ -1,4 +1,5 @@
 import String exposing (..)
+import List exposing (..)
 
 change : Int -> (Int, Int, Int, Int)
 change amount =
@@ -46,6 +47,15 @@ powers base limit =
 
 sumOfCubesOfOdds : List Int -> Int
 sumOfCubesOfOdds numbers =
+    let cube : Int -> Int
+        cube num =
+            num^3
+        isOdd : Int -> Bool
+        isOdd num =
+            num % 2 /= 0
+
+    in
+        foldr (+) 0 (map cube (filter isOdd (numbers)))
 
 
 import Date exposing ( fromString, fromTime, toTime)
