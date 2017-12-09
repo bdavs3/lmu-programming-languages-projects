@@ -1,8 +1,11 @@
 type alias Cylinder =
     {
-        radius : Float
-    ,   height : Float
+         radius : Float
+    ,    height : Float
     }
+
+cylinder =
+    Cylinder 1.0 1.0
 
 volume : Cylinder -> Float
 volume c =
