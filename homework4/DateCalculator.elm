@@ -3,7 +3,8 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import String exposing (toInt)
 import Date exposing (..)
-import Warmup exposing (daysBetween)
+import Date.Extra.Duration exposing (diffDays)
+import Warmup exposing(daysBetween)
 
 main =
   Html.beginnerProgram
@@ -28,8 +29,8 @@ model =
 -- Update
 
 type Msg
-  = FirstDate Date
-  | SecondDate Date
+  = FirstDate String
+  | SecondDate String
 
 update : Msg -> Model -> Model
 update msg model =
