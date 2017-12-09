@@ -19,7 +19,7 @@ change amount =
         else if amount == 0 then
             (0, 0, 0, 0)
         else
-            Debug.crash "negative or non-integer coin input"
+            Debug.crash "negative coin input"
 
 
 stripQuotes : String -> String
