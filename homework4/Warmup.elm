@@ -38,7 +38,11 @@ stripQuotes string =
             (left 1 string) ++ stripQuotes (dropLeft 1 string)
 
 powers : Int -> Int -> List Int
-powers base lim =
+powers base limit =
+    if limit < 0 then
+        []
+    else
+        base^limit :: powers base (limit - 1)
 
 sumOfCubesOfOdds : List Int -> Int
 sumOfCubesOfOdds numbers =
