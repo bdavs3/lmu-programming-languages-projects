@@ -1,3 +1,5 @@
+import String exposing (..)
+
 change : Int -> (Int, Int, Int, Int)
 change amount =
     let addTuple : (Int, Int, Int, Int) -> (Int, Int, Int, Int) -> (Int, Int, Int, Int)
@@ -23,7 +25,17 @@ change amount =
 
 
 stripQuotes : String -> String
-stripQuotes =
+stripQuotes string =
+    if length string == 0 then
+        ""
+
+    else
+        if left 1 string == "\"" then
+            stripQuotes (dropLeft 1 string)
+        else if left 1 string == "'" then
+            stripQuotes (dropLeft 1 string)
+        else
+            (left 1 string) ++ stripQuotes (dropLeft 1 string)
 
 powers : Int -> Int -> List Int
 powers base lim =
