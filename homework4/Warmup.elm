@@ -1,5 +1,9 @@
-import String exposing (..)
-import List exposing (..)
+module Warmup exposing (..)
+
+import Date.Extra.Create exposing ( dateFromFields, getTimezoneOffset )
+import Date.Extra.Duration exposing ( diffDays )
+import Date.Extra.Period as Period exposing ( add )
+import Date exposing ( fromString, fromTime )
 
 change : Int -> (Int, Int, Int, Int)
 change amount =
@@ -27,16 +31,16 @@ change amount =
 
 stripQuotes : String -> String
 stripQuotes string =
-    if length string == 0 then
+    if String.length string == 0 then
         ""
 
     else
-        if left 1 string == "\"" then
-            stripQuotes (dropLeft 1 string)
-        else if left 1 string == "'" then
-            stripQuotes (dropLeft 1 string)
+        if String.left 1 string == "\"" then
+            stripQuotes (String.dropLeft 1 string)
+        else if String.left 1 string == "'" then
+            stripQuotes (String.dropLeft 1 string)
         else
-            (left 1 string) ++ stripQuotes (dropLeft 1 string)
+            (String.left 1 string) ++ stripQuotes (String.dropLeft 1 string)
 
 powers : Int -> Int -> List Int
 powers base limit =
@@ -55,23 +59,15 @@ sumOfCubesOfOdds numbers =
             num % 2 /= 0
 
     in
-        foldr (+) 0 (map cube (filter isOdd (numbers)))
+        List.foldr (+) 0 (List.map cube (List.filter isOdd (numbers)))
 
 
-import Date.Extra.Create exposing ( dateFromFields, getTimezoneOffset )
-import Date.Extra.Duration exposing ( diffDays )
-import Date.Extra.Period as Period exposing ( add )
-import Date exposing ( fromString, fromTime )
-daysBetween dateString1 dateString2 : String -> String -> Int
-daysBetween =
-
-  dateString1 = "2017-02-14"
-  dateString2 = "2016-12-25"
-
-  date1WithOffset = dateString1 |> fromString |> Result.withDefault (fromTime 0)
-  date1 = add Period.Minute (getTimezoneOffset date1WithOffset) date1WithOffset
-
-  date2WithOffset = dateString2 |> fromString |> Result.withDefault (fromTime 0)
-  date2 = add Period.Minute (getTimezoneOffset date2WithOffset) date2WithOffset
-
-  diffDays date1 date2 |> abs
+daysBetween : String -> String -> Int
+daysBetween dateString1 dateString2 =
+  let
+    date1WithOffset = dateString1 |> fromString |> Result.withDefault (fromTime 0)
+    date1 = add Period.Minute (getTimezoneOffset date1WithOffset) date1WithOffset
+    date2WithOffset = dateString2 |> fromString |> Result.withDefault (fromTime 0)
+    date2 = add Period.Minute (getTimezoneOffset date2WithOffset) date2WithOffset
+  in
+    diffDays date1 date2 |> abs
